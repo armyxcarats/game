@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#12243a" />
+  <title>PokéSnap Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <section class="screen screen-home is-visible" id="home-screen" aria-labelledby="home-title">
+      <div class="top-bar">
+        <span class="status-light"></span>
+        <span>FIELD GUIDE // 001</span>
+        <span class="top-bar-right">REC ●</span>
+      </div>
+
+      <div class="home-content">
+        <p class="title-kicker">A SNAPSHOT ADVENTURE</p>
+        <h1 id="home-title" class="game-title"><span>Pokemon</span><strong>and Me</strong></h1>
+        <button class="pixel-button start-button" id="start-button" type="button">START <span aria-hidden="true">▶</span></button>
+      </div>
+
+      <div class="audio-controls" aria-label="Background music controls">
+        <button class="audio-toggle" id="audio-toggle" type="button" aria-label="Mute background music" aria-pressed="false">♫</button>
+        <label for="audio-volume">VOLUME</label>
+        <input id="audio-volume" type="range" min="0" max="1" step="0.05" value="0.45" aria-label="Background music volume" />
+      </div>
+
+      <div class="corner-note">© 2026 // SNAP LABS</div>
+    </section>
+
+    <section class="screen screen-login" id="login-screen" aria-labelledby="login-title" hidden>
+      <div class="top-bar">
+        <button class="back-button" id="home-button" type="button" aria-label="Back to title screen">◀ HOME</button>
+        <span>FIELD GUIDE // 002</span>
+        <span class="top-bar-right">REC ●</span>
+      </div>
+
+      <div class="login-layout">
+        <div class="intro-copy">
+          <div class="trainer-preview" aria-live="polite">
+            <span class="preview-label">TRAINER PREVIEW</span>
+            <div class="preview-stage">
+              <span id="preview-placeholder">SELECT A GENDER</span>
+              <img id="gender-preview" src="" alt="" hidden />
+            </div>
+          </div>
+          <p class="eyebrow">POKÉSNAP ARCHIVE</p>
+          <h1 id="login-title">Meet your<br /><span>field guide.</span></h1>
+          <p class="intro-text">Tell us who is joining the adventure.<br />Your first memory starts here.</p>
+          <div class="pixel-divider" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+
+        <form class="trainer-form" id="trainer-form">
+          <div class="form-heading">
+            <span class="heading-number">01</span>
+            <div>
+              <p class="form-label">NEW TRAINER</p>
+              <h2>Identify yourself</h2>
+            </div>
+          </div>
+
+          <label for="trainer-name">Your name</label>
+          <input id="trainer-name" name="name" type="text" maxlength="18" placeholder="TYPE YOUR NAME" autocomplete="name" required />
+
+          <fieldset>
+            <legend>Gender</legend>
+            <div class="gender-options">
+              <label class="choice-card"><input type="radio" name="gender" value="girl" required /><span class="choice-icon">♀</span><span>GIRL</span></label>
+              <label class="choice-card"><input type="radio" name="gender" value="boy" /><span class="choice-icon">♂</span><span>BOY</span></label>
+            </div>
+          </fieldset>
+
+          <div class="details-row">
+            <div class="detail-field">
+              <label for="trainer-birthdate">Birthdate</label>
+              <input id="trainer-birthdate" name="birthdate" type="date" required />
+            </div>
+            <div class="detail-field">
+              <label for="trainer-age">Age</label>
+              <input id="trainer-age" name="age" type="number" min="1" max="120" placeholder="00" required />
+            </div>
+          </div>
+
+          <button class="pixel-button" type="submit">CONTINUE <span aria-hidden="true">▶</span></button>
+          <p class="form-footnote">Your adventure data stays on this device.</p>
+        </form>
+      </div>
+
+      <div class="corner-note">© 2026 // SNAP LABS</div>
+    </section>
+
+    <section class="screen screen-starters" id="starter-screen" aria-labelledby="starter-title" hidden>
+      <div class="top-bar">
+        <button class="back-button" id="back-button" type="button" aria-label="Back to trainer profile">◀ BACK</button>
+        <span>FIELD GUIDE // 002</span>
+        <span class="top-bar-right">PROF. MINT</span>
+      </div>
+
+      <div class="starter-header">
+        <p class="eyebrow">FIRST CAPTURE CREW</p>
+        <h1 id="starter-title">Choose your<br /><span>first partner.</span></h1>
+        <p class="starter-subtitle">Every field guide starts with one brave little choice.</p>
+      </div>
+
+      <div class="starter-grid" role="group" aria-label="Choose one starter Pokemon">
+        <button class="starter-card torchic-card" type="button" data-starter="Torchic" aria-label="Choose Poké Ball one" aria-pressed="false">
+          <img class="selection-ball" src="pokeball.png" alt="" aria-hidden="true" />
+          <span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span>
+        </button>
+
+        <button class="starter-card empty-card" type="button" data-starter="Mystery" aria-label="Choose Poké Ball two" aria-pressed="false">
+          <img class="selection-ball" src="pokeball.png" alt="" aria-hidden="true" />
+          <span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span>
+        </button>
+
+        <button class="starter-card eevee-card" type="button" data-starter="Eevee" aria-label="Choose Poké Ball three" aria-pressed="false">
+          <img class="selection-ball" src="pokeball.png" alt="" aria-hidden="true" />
+          <span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span><span class="selection-star" aria-hidden="true">✦</span>
+        </button>
+      </div>
+
+      <div class="selection-footer">
+        <button class="pixel-button confirm-button" id="confirm-button" type="button" disabled>CONFIRM CHOICE <span aria-hidden="true">▶</span></button>
+      </div>
+
+      <div class="corner-note">TRAINER: <span id="trainer-summary">---</span></div>
+    </section>
+
+    <section class="screen screen-torchic" id="torchic-screen" aria-labelledby="torchic-title" hidden>
+      <div class="top-bar">
+        <button class="back-button" id="torchic-back-button" type="button" aria-label="Back to Poké Ball selection">◀ BACK</button>
+        <span>FIELD GUIDE // 003</span>
+        <span class="top-bar-right">NEW PARTNER</span>
+      </div>
+
+      <div class="torchic-reveal" id="torchic-reveal">
+        <p class="eyebrow">PARTNER DISCOVERED</p>
+        <h1 id="torchic-title">Torchic</h1>
+        <div class="level-meter" role="group" aria-label="Torchic experience level">
+          <div class="level-meter-heading"><span>LEVEL UP</span><span id="level-percent">0%</span></div>
+          <div class="level-meter-track"><div class="level-meter-fill" id="level-meter-fill"></div></div>
+        </div>
+        <div class="torchic-sprite-stage">
+          <img class="torchic-character" src="Torchic.png" alt="Torchic" />
+          <span class="torchic-eye-dot torchic-eye-dot-left" aria-hidden="true"></span>
+          <span class="torchic-eye-dot torchic-eye-dot-right" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <aside class="feeding-panel" aria-label="Feed Torchic">
+        <div class="feed-controls">
+          <button class="feed-button" id="feed-button" type="button">FEED TORCHIC</button>
+          <div class="berry-tray">
+            <span class="berry-button"><img src="berrie1.png" alt="" /></span>
+            <span class="berry-button"><img src="berrie1.png" alt="" /></span>
+            <span class="berry-button"><img src="berrie1.png" alt="" /></span>
+            <span class="berry-button"><img src="berrie1.png" alt="" /></span>
+            <span class="berry-button"><img src="berrie1.png" alt="" /></span>
+          </div>
+        </div>
+        <div class="exp-controls">
+          <button class="feed-button exp-feed-button" id="exp-feed-button" type="button">GIVE EXP</button>
+          <div class="exp-tray">
+            <span class="exp-item"><img src="exp.png" alt="Experience" /></span>
+            <span class="exp-item"><img src="exp.png" alt="Experience" /></span>
+            <span class="exp-item"><img src="exp.png" alt="Experience" /></span>
+            <span class="exp-item"><img src="exp.png" alt="Experience" /></span>
+            <span class="exp-item"><img src="exp.png" alt="Experience" /></span>
+          </div>
+        </div>
+      </aside>
+
+      <div class="corner-note">TRAINER: <span id="torchic-trainer-summary">---</span></div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+  <audio id="background-music" src="bg song.mp3" loop preload="auto" autoplay playsinline></audio>
+  <script src="script.js"></script>
+</body>
+</html>

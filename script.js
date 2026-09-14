@@ -23,6 +23,10 @@ const torchicCharacter = document.querySelector('.torchic-character');
 const levelMeterFill = document.querySelector('#level-meter-fill');
 const levelPercent = document.querySelector('#level-percent');
 const torchicTitle = document.querySelector('#torchic-title');
+const megaFolderButton = document.querySelector('#mega-folder-button');
+const megaDialog = document.querySelector('#mega-dialog');
+const megaYesButton = document.querySelector('#mega-yes-button');
+const megaNoButton = document.querySelector('#mega-no-button');
 const backgroundMusic = document.querySelector('#background-music');
 const audioToggle = document.querySelector('#audio-toggle');
 const audioVolume = document.querySelector('#audio-volume');
@@ -32,6 +36,8 @@ let selectedStarter = null;
 let toastTimer;
 let levelProgress = 0;
 let evolutionStage = 0;
+let megaStoneOwned = false;
+let megaPromptShown = false;
 let activePokemonSound = null;
 let pokemonSoundTimer;
 
@@ -178,6 +184,23 @@ expFeedButton.addEventListener('click', () => {
   });
 });
 
+megaFolderButton.addEventListener('click', () => {
+  megaDialog.hidden = false;
+  megaYesButton.focus();
+});
+
+megaYesButton.addEventListener('click', () => {
+  megaDialog.hidden = true;
+  megaStoneOwned = true;
+  evolveToMegaBlaziken();
+});
+
+megaNoButton.addEventListener('click', () => {
+  megaDialog.hidden = true;
+  megaStoneOwned = true;
+  showToast('MEGA STONE SAVED FOR FUTURE USE.');
+});
+
 function feedBerry(berryButton) {
   return new Promise((resolve) => {
     const berryBounds = berryButton.getBoundingClientRect();
@@ -241,6 +264,10 @@ function addLevelProgress(points) {
   levelMeterFill.style.width = `${levelProgress}%`;
   levelPercent.textContent = `${levelProgress}%`;
   if (levelProgress === 100 && evolutionStage < 2) evolvePokemon();
+  if (levelProgress === 100 && evolutionStage === 2 && !megaPromptShown) {
+    megaPromptShown = true;
+    megaFolderButton.hidden = false;
+  }
 }
 
 function evolvePokemon() {
@@ -264,6 +291,22 @@ function evolvePokemon() {
   torchicReveal.classList.add('is-evolving');
   document.querySelector('.level-meter').setAttribute('aria-label', `${nextPokemon.name} experience level`);
   playPokemonSound(nextPokemon.name);
+}
+
+function evolveToMegaBlaziken() {
+  evolutionStage = 3;
+  torchicTitle.textContent = 'Mega Blaziken';
+  feedButton.textContent = 'FEED MEGA BLAZIKEN';
+  torchicCharacter.src = 'mega blaziken.png';
+  torchicCharacter.alt = 'Mega Blaziken';
+  torchicReveal.classList.add('is-evolved', 'is-blaziken', 'is-mega');
+  torchicScreen.classList.add('is-mega');
+  torchicReveal.classList.remove('is-fed', 'is-evolving');
+  void torchicReveal.offsetWidth;
+  torchicReveal.classList.add('is-evolving');
+  document.querySelector('.level-meter').setAttribute('aria-label', 'Mega Blaziken experience level');
+  megaFolderButton.hidden = true;
+  playPokemonSound('Blaziken');
 }
 
 function currentPokemonName() {
